@@ -1,3 +1,4 @@
+import Cart from '@/components/Cart'
 import { Product } from '@/components/Product'
 import { products_data } from '@/utils/mocks'
 import Image from 'next/image'
@@ -16,6 +17,8 @@ export default function Home() {
             })
           }
         </div>
+
+        <Cart/>
       </div>
     </main>
   )
