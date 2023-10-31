@@ -19,6 +19,26 @@ export default function Cart() {
     }
   };
 
+  const checkout = async () => {
+    await fetch("http://localhost:3000/api/checkout", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ products: cart }),
+    })
+      .then((response) => {
+        return response.json();
+      })
+      .then((response) => {
+        console.log(response);
+        if (response.url) {
+          window.location.href = response.url;
+          // console.log(response.url);
+        }
+      });
+  };
+
   return (
     <div className="border rounded-lg p-4 shadow-md">
       <h2 className="text-lg font-semibold mb-4 text-center"> Your Cart </h2>
@@ -67,7 +87,7 @@ export default function Cart() {
 
           {/* Strip Checkout Button */}
           <button
-            onClick={() => {}}
+            onClick={checkout}
             className="mt-4 px-4 py-2 bg-green-500 text-white hover:bg-green-600 rounded focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
           >
             Checkout
